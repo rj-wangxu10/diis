@@ -1,0 +1,525 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start API Server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--workspace",
+				"@datafoundry/api"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Start Web Server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--workspace",
+				"@datafoundry/web"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Build workspace packages",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Build workspace packages",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Start dev servers (API + Web)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true
+		},
+		{
+			"label": "Check Docker availability",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"-c",
+				"docker --version 2>&1 && echo DOCKER_AVAILABLE || echo DOCKER_NOT_AVAILABLE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check Docker v2",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"docker --version 2>&1 && echo DOCKER_AVAILABLE || echo DOCKER_NOT_AVAILABLE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check Neo4j in PATH",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"where neo4j 2>&1 || echo NEO4J_NOT_IN_PATH"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j installation",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s C:\\neo4j* 2>nul | findstr /i neo4j | head -5 || echo NO_NEO4J_FOUND"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j installation v2",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b \"C:\\Program Files\\neo4j*\" 2>nul & dir /b \"C:\\Program Files (x86)\\neo4j*\" 2>nul & dir /b \"D:\\neo4j*\" 2>nul & dir /b \"%USERPROFILE%\\.Neo4j*\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j Desktop",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s \"%USERPROFILE%\\.Neo4jDesktop\" 2>nul | findstr /i \"neo4j.exe neo4j.bat neo4j.ps1\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j Desktop2",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s \"%USERPROFILE%\\.Neo4jDesktop2\" 2>nul | findstr /i \"neo4j.exe neo4j.bat neo4j.ps1 installations\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j Desktop installations",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s \"%USERPROFILE%\\.Neo4jDesktop2\\installations\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List Neo4j Desktop2 contents",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /ad \"%USERPROFILE%\\.Neo4jDesktop2\" 2>nul & echo --- & dir /b /ad \"%USERPROFILE%\\.Neo4jDesktop2\\*\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List Neo4j Desktop2 Stores",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s \"%USERPROFILE%\\.Neo4jDesktop2\\Stores\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Search for Neo4j in AppData",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /ad \"%LOCALAPPDATA%\\Neo4j*\" 2>nul & dir /b /ad \"%APPDATA%\\Neo4j*\" 2>nul & dir /b /ad \"%PROGRAMDATA%\\Neo4j*\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List Neo4j Desktop LocalAppData",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /ad \"%LOCALAPPDATA%\\Neo4j Desktop\" 2>nul & echo --- & dir /b /ad \"%LOCALAPPDATA%\\neo4j-desktop\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List neo4j-desktop LocalAppData",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /ad \"%LOCALAPPDATA%\\neo4j-desktop\" 2>nul & echo --- & dir /b /ad \"%LOCALAPPDATA%\\neo4j-desktop-updater\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List neo4j-desktop files",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b \"%LOCALAPPDATA%\\neo4j-desktop\" 2>nul & echo --- & dir /b \"%LOCALAPPDATA%\\neo4j-desktop-updater\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check for Neo4j process",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"tasklist /fi \"imagename eq neo4j*\" 2>nul & echo --- & tasklist /fi \"imagename eq java*\" 2>nul | findstr /i java & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Find Neo4j Desktop exe",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"where /r \"%LOCALAPPDATA%\" Neo4jDesktop.exe 2>nul & where /r \"%LOCALAPPDATA%\" neo4j-desktop.exe 2>nul & where /r \"%APPDATA%\" Neo4jDesktop.exe 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Find Neo4j exe in user dir",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"where /r \"C:\\Users\\ruijie\" Neo4j*.exe 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Launch Neo4j Desktop",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"start \"\" \"C:\\Users\\ruijie\\AppData\\Local\\Programs\\Neo4j Desktop 2\\Neo4j Desktop 2.exe\" & echo NEO4J_DESKTOP_LAUNCHED"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Check Neo4j Desktop process",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"tasklist /fi \"imagename eq Neo4j*\" 2>nul & echo --- & tasklist /fi \"imagename eq java*\" 2>nul | findstr /i java & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check all processes for Neo4j",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"tasklist 2>nul | findstr /i \"neo4j\" & echo --- & tasklist 2>nul | findstr /i \"java\" & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check Neo4j bolt port",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"netstat -an | findstr \"7687 7474\" & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check Neo4j ports",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"netstat -an | findstr 7687 & echo --- & netstat -an | findstr 7474 & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Wait and check Neo4j ports",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"timeout /t 10 /nobreak >nul & netstat -an | findstr 7687 & echo --- & netstat -an | findstr 7474 & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List Neo4j Desktop config",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b /s \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\" 2>nul & echo --- & dir /b /s \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Config\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Read Neo4j config",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"type \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\conf\\neo4j.conf\" 2>nul | findstr /i \"bolt http listen address port password\" & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Read Neo4j config v2",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"type \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\conf\\neo4j.conf\" 2>nul | findstr /i \"bolt\" & echo --- & type \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\conf\\neo4j.conf\" 2>nul | findstr /i \"listen\" & echo --- & type \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\conf\\neo4j.conf\" 2>nul | findstr /i \"7687\" & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "List Neo4j bin directory",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"dir /b \"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\bin\" 2>nul & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Start Neo4j Server",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"\"C:\\Users\\ruijie\\.Neo4jDesktop2\\Data\\dbmss\\dbms-3670aec1-2071-42a2-b3ee-c97d2e883163\\bin\\neo4j.bat\" console"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Verify Neo4j ports",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"netstat -an | findstr 7687 & echo --- & netstat -an | findstr 7474 & echo SEARCH_DONE"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check remote Neo4j connectivity",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"powershell -Command \"Test-NetConnection -ComputerName 172.16.3.247 -Port 7687 -WarningAction SilentlyContinue | Select-Object ComputerName,RemotePort,TcpTestSucceeded | Format-List\""
+			],
+			"group": "build"
+		},
+		{
+			"label": "Check remote Neo4j port",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Test-NetConnection -ComputerName 172.16.3.247 -Port 7687 -WarningAction SilentlyContinue | Format-List"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Kill old node processes",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"taskkill /f /im node.exe 2>nul & echo NODE_KILLED"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Start dev servers (API + Web)",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Test Neo4j connection",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"run",
+				"tsx",
+				"scripts/test-neo4j-connection.mjs"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Test Neo4j connection v2",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"tsx",
+				"scripts/test-neo4j-connection.mjs"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Stop project services",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"scripts/stop-dev-services.ps1"
+			]
+		},
+		{
+			"label": "Delete user wangxu294396155@163.com",
+			"type": "shell",
+			"command": "node scripts/delete-user.cjs wangxu294396155@163.com"
+		},
+		{
+			"label": "Delete user wangxu294396155@163.com",
+			"type": "shell",
+			"command": "node scripts/delete-user.cjs wangxu294396155@163.com"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Build Web for deploy",
+			"type": "shell",
+			"command": "npm run build:web"
+		},
+		{
+			"label": "Create deploy archive",
+			"type": "shell",
+			"command": "tar -czvf datafoundry-deploy.tar.gz --exclude='node_modules' --exclude='.git' --exclude='apps/api/storage' --exclude='apps/web/.next/cache' --exclude='*.log' --exclude='.venv' --exclude='.turbo' ."
+		},
+		{
+			"label": "Check deploy archive size",
+			"type": "shell",
+			"command": "ls -lh datafoundry-deploy.tar.gz 2>/dev/null || dir datafoundry-deploy.tar.gz"
+		},
+		{
+			"label": "Check deploy archive size",
+			"type": "shell",
+			"command": "Get-Item datafoundry-deploy.tar.gz | Select-Object Name, Length, @{N='SizeMB';E={[math]::Round($_.Length/1MB,2)}}"
+		},
+		{
+			"label": "Check deploy archive size v2",
+			"type": "shell",
+			"command": "dir datafoundry-deploy.tar.gz"
+		},
+		{
+			"label": "Deploy via CLI",
+			"type": "shell",
+			"command": "node scripts/deploy/cli.mjs deploy --non-interactive"
+		},
+		{
+			"label": "Check node npm versions",
+			"type": "shell",
+			"command": "node --version && npm --version && python3 --version 2>&1 || python --version"
+		},
+		{
+			"label": "Check node npm versions v2",
+			"type": "shell",
+			"command": "node --version; npm --version; python --version"
+		},
+		{
+			"label": "Build all for production",
+			"type": "shell",
+			"command": "npm run build; npm run build:web; npm run build:tui"
+		},
+		{
+			"label": "Build TUI",
+			"type": "shell",
+			"command": "npm run build:tui"
+		},
+		{
+			"label": "Build TUI",
+			"type": "shell",
+			"command": "npm run build:tui"
+		},
+		{
+			"label": "Start production servers",
+			"type": "shell",
+			"command": "npm run start",
+			"isBackground": true,
+			"group": "build"
+		}
+	]
+}
