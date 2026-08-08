@@ -9,7 +9,7 @@
 				"run",
 				"dev",
 				"--workspace",
-				"@datafoundry/api"
+				"@diis/api"
 			],
 			"isBackground": true,
 			"group": "build"
@@ -22,7 +22,7 @@
 				"run",
 				"dev",
 				"--workspace",
-				"@datafoundry/web"
+				"@diis/web"
 			],
 			"isBackground": true,
 			"group": "build"

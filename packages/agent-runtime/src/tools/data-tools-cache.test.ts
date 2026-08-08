@@ -1,4 +1,4 @@
-import type { DataGateway } from "@datafoundry/data-gateway";
+import type { DataGateway } from "@diis/data-gateway";
 import { describe, expect, it } from "vitest";
 
 import { createDataFoundryToolRegistry } from "./data-tools.js";

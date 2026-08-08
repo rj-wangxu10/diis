@@ -1,6 +1,6 @@
 import { createTool } from "@mastra/core/tools";
-import type { DataGateway, SchemaSummary, SqlExecutionResult } from "@datafoundry/data-gateway";
-import type { ArtifactSummary, ChartPreviewPoint, ChartPreviewSeries, ChartPreviewType } from "@datafoundry/contracts";
+import type { DataGateway, SchemaSummary, SqlExecutionResult } from "@diis/data-gateway";
+import type { ArtifactSummary, ChartPreviewPoint, ChartPreviewSeries, ChartPreviewType } from "@diis/contracts";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 

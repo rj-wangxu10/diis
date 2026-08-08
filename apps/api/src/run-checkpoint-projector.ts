@@ -1,11 +1,11 @@
 import { EventType } from "@ag-ui/client";
-import type { RunEventEnvelope } from "@datafoundry/contracts";
+import type { RunEventEnvelope } from "@diis/contracts";
 import type {
   CheckpointKind,
   CheckpointStatus,
   ContextPackageSnapshotRecord,
   MetadataStore
-} from "@datafoundry/metadata";
+} from "@diis/metadata";
 
 export class RunCheckpointProjector {
   constructor(

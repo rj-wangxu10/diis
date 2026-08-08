@@ -1,13 +1,13 @@
-import { LocalArtifactService, type CreateArtifactInput } from "@datafoundry/artifacts";
+import { LocalArtifactService, type CreateArtifactInput } from "@diis/artifacts";
 import type {
   ArtifactSummary,
   ChartPreviewPoint,
   ChartPreviewSeries,
   ChartPreviewType,
   DataSourceSummary
-} from "@datafoundry/contracts";
-import type { DataSourceRecord, MetadataStore } from "@datafoundry/metadata";
-import type { FileAssetService } from "@datafoundry/files";
+} from "@diis/contracts";
+import type { DataSourceRecord, MetadataStore } from "@diis/metadata";
+import type { FileAssetService } from "@diis/files";
 import {
   AccessAdapter,
   OracleAdapter,

@@ -16,7 +16,7 @@ import {
   useFrontendTool,
   useRenderTool,
 } from "@copilotkit/react-core/v2";
-import type { EvidenceRef } from "@datafoundry/contracts";
+import type { EvidenceRef } from "@diis/contracts";
 import nextDynamic from "next/dynamic";
 import { Children, cloneElement, isValidElement, useCallback, createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps, ComponentType, MouseEvent, PointerEvent as ReactPointerEvent, ReactNode } from "react";
@@ -2774,7 +2774,7 @@ function ToolResultMissingCard({ name }: { name: string }) {
          tool observation has not reached the frontend thread. If the right-side Trace already has SQL audit or step
          status, this usually means the AG-UI{" "}
         <code className="text-[11px]">TOOL_CALL_RESULT</code>{" "}
-         terminal event is missing. Refresh and retry, or inspect the RuiJie runtime bridge.
+         terminal event is missing. Refresh and retry, or inspect the RuiJie-DiiS runtime bridge.
       </p>
     </div>
   );

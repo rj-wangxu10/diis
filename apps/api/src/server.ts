@@ -12,24 +12,24 @@ import {
   resolveSkillCacheDir,
   type AgentMemoryMode,
   type TaskStateRuntime
-} from "@datafoundry/agent-runtime";
-import { LocalArtifactService, SessionOutputService } from "@datafoundry/artifacts";
-import { type MeResponse, createEnvConfig, createErrorResult, createSuccessResult } from "@datafoundry/contracts";
-import { LocalDataGateway } from "@datafoundry/data-gateway";
-import { LocalFileAssetService } from "@datafoundry/files";
-import { LocalKnowledgeService } from "@datafoundry/knowledge";
+} from "@diis/agent-runtime";
+import { LocalArtifactService, SessionOutputService } from "@diis/artifacts";
+import { type MeResponse, createEnvConfig, createErrorResult, createSuccessResult } from "@diis/contracts";
+import { LocalDataGateway } from "@diis/data-gateway";
+import { LocalFileAssetService } from "@diis/files";
+import { LocalKnowledgeService } from "@diis/knowledge";
 import {
   RunEventWriter,
   createMetadataStore,
   type UserRecord,
   type MetadataStore
-} from "@datafoundry/metadata";
+} from "@diis/metadata";
 import {
   buildSkillResourcePayload,
   configResourceToSkillRecord,
   materializeSkillPackages,
   parseSkillPackage
-} from "@datafoundry/skills";
+} from "@diis/skills";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { createServer as createHttpServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";

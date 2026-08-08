@@ -1,18 +1,11 @@
 "use client";
 
-import { useCallback, useState, type FormEvent, type ReactNode } from "react";
+import { useCallback, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { configApi } from "../../lib/config-api/client";
+import { useT } from "../../i18n/locale-context";
 
 export type AuthMode = "login" | "register" | "forgot" | "verify" | "reset";
-
-const AUTH_MODE_META: Record<AuthMode, { title: string; subtitle: string; submit: string }> = {
-  login: { title: "Sign in", subtitle: "Welcome back to RuiJie", submit: "Sign in" },
-  register: { title: "Create account", subtitle: "Get started with RuiJie", submit: "Create account" },
-  forgot: { title: "Forgot password", subtitle: "We'll send you a reset link", submit: "Send reset link" },
-  verify: { title: "Verify email", subtitle: "Enter the code we sent you", submit: "Verify email" },
-  reset: { title: "Reset password", subtitle: "Choose a new password", submit: "Reset password" },
-};
 
 export const AUTH_BUTTON_CLASS =
   "flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-semibold text-white transition-colors hover:bg-primary-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-50";
@@ -34,6 +27,7 @@ export function AuthFlow({
   error?: string | null;
   registrationEnabled?: boolean;
 }) {
+  const t = useT();
   const router = useRouter();
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [displayName, setDisplayName] = useState("");
@@ -43,6 +37,21 @@ export function AuthFlow({
   const [message, setMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+
+  const meta = useMemo(() => {
+    switch (mode) {
+      case "login":
+        return { title: t("auth.signIn"), subtitle: t("auth.signInSubtitle"), submit: t("auth.signInSubmit") };
+      case "register":
+        return { title: t("auth.createAccount"), subtitle: t("auth.createAccountSubtitle"), submit: t("auth.createAccountSubmit") };
+      case "forgot":
+        return { title: t("auth.forgotPassword"), subtitle: t("auth.forgotPasswordSubtitle"), submit: t("auth.forgotPasswordSubmit") };
+      case "verify":
+        return { title: t("auth.verifyEmail"), subtitle: t("auth.verifyEmailSubtitle"), submit: t("auth.verifyEmailSubmit") };
+      case "reset":
+        return { title: t("auth.resetPassword"), subtitle: t("auth.resetPasswordSubtitle"), submit: t("auth.resetPasswordSubmit") };
+    }
+  }, [mode, t]);
 
   const goToSubMode = useCallback((next: AuthMode) => {
     setMode(next);
@@ -65,7 +74,7 @@ export function AuthFlow({
     setMessage(null);
     try {
       if ((mode === "register" || mode === "reset") && password.length < 6) {
-        setLocalError("Password must be at least 6 characters.");
+        setLocalError(t("auth.passwordTooShort"));
         return;
       }
       if (mode === "login") {
@@ -76,7 +85,9 @@ export function AuthFlow({
       if (mode === "register") {
         const result = await configApi.register({ email, password, displayName });
         setMessage(
-          result.verificationToken ? `Verify email token: ${result.verificationToken}` : "Verify email",
+          result.verificationToken
+            ? t("auth.verificationTokenMessage", { token: result.verificationToken })
+            : t("auth.verifyEmailMessage"),
         );
         setMode("verify");
         return;
@@ -84,7 +95,9 @@ export function AuthFlow({
       if (mode === "forgot") {
         const result = await configApi.forgotPassword({ email });
         setMessage(
-          result.resetToken ? `Reset token: ${result.resetToken}` : "Check your email for a reset link.",
+          result.resetToken
+            ? t("auth.resetTokenMessage", { token: result.resetToken })
+            : t("auth.checkEmailMessage"),
         );
         setMode("reset");
         return;
@@ -96,17 +109,16 @@ export function AuthFlow({
       }
       if (mode === "reset") {
         await configApi.resetPassword({ token, password });
-        setMessage("Password reset. Sign in to continue.");
+        setMessage(t("auth.resetSuccessMessage"));
         setMode("login");
       }
     } catch (err) {
-      setLocalError(err instanceof Error ? err.message : "Authentication failed");
+      setLocalError(err instanceof Error ? err.message : t("auth.authFailed"));
     } finally {
       setSubmitting(false);
     }
   };
 
-  const meta = AUTH_MODE_META[mode];
   const shownError = localError || error;
 
   return (
@@ -115,43 +127,43 @@ export function AuthFlow({
         {mode === "register" ? (
           <AuthField
             id="auth-display-name"
-            label="Display name"
+            label={t("auth.displayName")}
             value={displayName}
             onChange={setDisplayName}
-            placeholder="Ada Lovelace"
+            placeholder={t("auth.displayNamePlaceholder")}
             autoComplete="name"
           />
         ) : null}
         {mode === "verify" || mode === "reset" ? (
           <AuthField
             id="auth-token"
-            label={mode === "verify" ? "Verification code" : "Reset code"}
+            label={mode === "verify" ? t("auth.verificationCode") : t("auth.resetCode")}
             value={token}
             onChange={setToken}
-            placeholder={mode === "verify" ? "Paste your verification code" : "Paste your reset code"}
+            placeholder={mode === "verify" ? t("auth.verificationCodePlaceholder") : t("auth.resetCodePlaceholder")}
             autoComplete="one-time-code"
           />
         ) : null}
         {mode !== "verify" && mode !== "reset" ? (
           <AuthField
             id="auth-email"
-            label="Email"
+            label={t("auth.email")}
             type="email"
             value={email}
             onChange={setEmail}
-            placeholder="you@example.com"
+            placeholder={t("auth.emailPlaceholder")}
             autoComplete="email"
           />
         ) : null}
         {mode !== "forgot" && mode !== "verify" ? (
           <AuthField
             id="auth-password"
-            label={mode === "reset" ? "New password" : "Password"}
+            label={mode === "reset" ? t("auth.newPassword") : t("auth.password")}
             type="password"
             value={password}
             onChange={setPassword}
-            placeholder={mode === "login" ? "••••••••" : "At least 6 characters"}
-            hint={mode === "register" || mode === "reset" ? "At least 6 characters" : undefined}
+            placeholder={mode === "login" ? t("auth.passwordPlaceholder") : t("auth.newPasswordPlaceholder")}
+            hint={mode === "register" || mode === "reset" ? t("auth.passwordHint") : undefined}
             autoComplete={mode === "login" ? "current-password" : "new-password"}
             {...(mode === "login"
               ? {
@@ -161,7 +173,7 @@ export function AuthFlow({
                       onClick={() => goToSubMode("forgot")}
                       className="text-xs font-medium text-muted transition-colors hover:text-foreground"
                     >
-                      Forgot password?
+                      {t("auth.forgotPasswordLink")}
                     </button>
                   ),
                 }
@@ -188,7 +200,7 @@ export function AuthFlow({
           {submitting ? (
             <>
               <SpinnerIcon />
-              <span>Please wait…</span>
+              <span>{t("auth.pleaseWait")}</span>
             </>
           ) : (
             meta.submit
@@ -217,6 +229,7 @@ function AuthModeSwitch({
   onGoLogin: () => void;
   onGoRegister: () => void;
 }) {
+  const t = useT();
   const link = (label: string, onClick: () => void) => (
     <button
       type="button"
@@ -231,14 +244,14 @@ function AuthModeSwitch({
     <div className="mt-5 border-t border-border pt-4 text-center text-xs text-muted">
       {mode === "login" ? (
         registrationEnabled ? (
-          <p>New to RuiJie? {link("Create an account", onGoRegister)}</p>
+          <p>{t("auth.newToRuiJieDiiS")} {link(t("auth.createAccountLink"), onGoRegister)}</p>
         ) : (
-          <p>Registration is closed. Contact your deployment administrator.</p>
+          <p>{t("auth.registrationClosedContact")}</p>
         )
       ) : mode === "register" ? (
-        <p>Already have an account? {link("Sign in", onGoLogin)}</p>
+        <p>{t("auth.alreadyHaveAccount")} {link(t("auth.signInLink"), onGoLogin)}</p>
       ) : (
-        <p>{link("Back to sign in", onGoLogin)}</p>
+        <p>{link(t("auth.backToSignIn"), onGoLogin)}</p>
       )}
     </div>
   );
@@ -296,14 +309,17 @@ export function PasswordAuthShell({
   title: string;
   subtitle?: string;
 }) {
+  const t = useT();
   return (
     <main className="flex min-h-screen items-center justify-center bg-surface-subtle p-6 text-foreground">
       <section className="auth-card-in w-full max-w-sm">
-        <div className="mb-6 flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-xs font-bold tracking-tight text-white">
-            RJ
-          </span>
-          <span className="text-sm font-semibold text-foreground">RuiJie</span>
+        <div className="mb-6 flex items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-xs font-bold tracking-tight text-white">
+              RJ
+            </span>
+            <span className="text-sm font-semibold text-foreground">{t("auth.brand")}</span>
+          </div>
         </div>
         <div className="rounded-xl border border-border bg-surface p-6 shadow-[var(--shadow-card)]">
           <div className="mb-5">

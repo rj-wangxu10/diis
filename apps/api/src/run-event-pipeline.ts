@@ -1,5 +1,5 @@
 import { EventType, type BaseEvent } from "@ag-ui/client";
-import type { RunEventWriter } from "@datafoundry/metadata";
+import type { RunEventWriter } from "@diis/metadata";
 
 import type { ConversationMemoryEventObserver } from "./conversation-memory.js";
 import type { RunCheckpointProjector } from "./run-checkpoint-projector.js";

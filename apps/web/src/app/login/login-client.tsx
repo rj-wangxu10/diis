@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AuthFlow, PasswordAuthShell } from "../../components/auth/auth-flow";
 import { configApi } from "../../lib/config-api/client";
+import { useT } from "../../i18n/locale-context";
 
 export function LoginClient() {
   const router = useRouter();
+  const t = useT();
   const [checking, setChecking] = useState(true);
   const [registrationEnabled, setRegistrationEnabled] = useState(true);
 
@@ -30,7 +32,7 @@ export function LoginClient() {
   }, [router]);
 
   if (checking) {
-    return <PasswordAuthShell title="Loading account..." />;
+    return <PasswordAuthShell title={t("auth.signInLoading")} />;
   }
 
   return (

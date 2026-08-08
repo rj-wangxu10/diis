@@ -3,11 +3,11 @@ import {
   createCustomEvent,
   type GoalRuntimeAdapter,
   type ProtocolCompletionDecision
-} from "@datafoundry/agent-runtime";
-import type { FileAssetService } from "@datafoundry/files";
+} from "@diis/agent-runtime";
+import type { FileAssetService } from "@diis/files";
 import { readdirSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
-import type { MetadataStore } from "@datafoundry/metadata";
+import type { MetadataStore } from "@diis/metadata";
 
 export type RunStatus = "running" | "suspended" | "completed" | "failed" | "canceled";
 

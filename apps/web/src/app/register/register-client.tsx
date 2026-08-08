@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AuthFlow, PasswordAuthShell } from "../../components/auth/auth-flow";
 import { configApi } from "../../lib/config-api/client";
+import { useT } from "../../i18n/locale-context";
 
 export function RegisterClient() {
   const router = useRouter();
+  const t = useT();
   const [checking, setChecking] = useState(true);
   const [registrationEnabled, setRegistrationEnabled] = useState(true);
 
@@ -30,21 +32,21 @@ export function RegisterClient() {
   }, [router]);
 
   if (checking) {
-    return <PasswordAuthShell title="Loading account..." />;
+    return <PasswordAuthShell title={t("auth.signInLoading")} />;
   }
 
   if (!registrationEnabled) {
     return (
       <PasswordAuthShell
-        title="Registration closed"
-        subtitle="Registration is closed. Contact your deployment administrator."
+        title={t("auth.registrationClosed")}
+        subtitle={t("auth.registrationClosedSubtitle")}
       >
         <button
           type="button"
           className="text-sm font-medium text-foreground underline-offset-2 hover:underline"
           onClick={() => router.push("/login")}
         >
-          Back to sign in
+          {t("auth.backToSignInLink")}
         </button>
       </PasswordAuthShell>
     );

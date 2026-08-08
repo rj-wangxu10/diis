@@ -531,7 +531,7 @@ function assertGenericContextPolicyStaysToolAgnostic() {
   const filePath = path.join(contextRoot, "policy/context-policy.ts");
   const source = readFileSync(filePath, "utf8");
   const forbiddenPatterns = [
-    { name: "data gateway dependency", pattern: /@datafoundry\/data-gateway/ },
+    { name: "data gateway dependency", pattern: /@diis\/data-gateway/ },
     { name: "schema projection policy", pattern: /applySchemaContextPolicy|projectSchemaToolObservation/ },
     { name: "SQL projection policy", pattern: /applySqlModelContextPolicy|projectSqlToolObservation/ },
     { name: "tool observation projection policy", pattern: /ToolObservationProjectionPolicy/ },

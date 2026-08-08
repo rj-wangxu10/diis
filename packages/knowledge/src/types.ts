@@ -1,4 +1,4 @@
-import type { Citation } from "@datafoundry/contracts";
+import type { Citation } from "@diis/contracts";
 import type { EmbeddingService } from "./embedding-service.js";
 
 export type KnowledgeCollection = {

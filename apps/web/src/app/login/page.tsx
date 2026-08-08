@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { LoginClient } from "./login-client";
+import { LocaleProvider } from "../../i18n/locale-context";
 
 export const metadata: Metadata = {
-  title: "Sign in",
+  title: "登录",
 };
 
 export default function LoginPage() {
-  return <LoginClient />;
+  return (
+    <LocaleProvider>
+      <LoginClient />
+    </LocaleProvider>
+  );
 }

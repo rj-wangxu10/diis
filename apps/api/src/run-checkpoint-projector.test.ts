@@ -1,5 +1,5 @@
-import { createCustomEvent } from "@datafoundry/agent-runtime";
-import { createMetadataStore, createVerifiedTestIdentity, RunEventWriter } from "@datafoundry/metadata";
+import { createCustomEvent } from "@diis/agent-runtime";
+import { createMetadataStore, createVerifiedTestIdentity, RunEventWriter } from "@diis/metadata";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";

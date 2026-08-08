@@ -4,8 +4,8 @@ import "@copilotkit/react-core/v2/styles.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "RuiJie",
-    template: "%s · RuiJie",
+    default: "RuiJie-DiiS",
+    template: "%s · RuiJie-DiiS",
   },
   description: "Agent-driven data task workspace",
 };

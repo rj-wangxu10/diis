@@ -4,13 +4,13 @@ import {
   createModelProviderFromProfile,
   STATIC_AGENT_TOOL_NAMES,
   type AgentModelContextProfile
-} from "@datafoundry/agent-runtime";
-import type { MetadataStore } from "@datafoundry/metadata";
+} from "@diis/agent-runtime";
+import type { MetadataStore } from "@diis/metadata";
 import {
   selectSkillsForRun,
   type SkillRecord,
   type SkillSelectionResult
-} from "@datafoundry/skills";
+} from "@diis/skills";
 
 import type { PolicyMcpClientConfig, PolicyMcpToolConfig } from "./policy-mcp-middleware.js";
 

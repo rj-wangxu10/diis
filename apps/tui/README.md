@@ -1,4 +1,4 @@
-# DataFoundry TUI (`@datafoundry/tui`)
+# DataFoundry TUI (`@diis/tui`)
 
 Terminal interface for the datafoundry monorepo.
 

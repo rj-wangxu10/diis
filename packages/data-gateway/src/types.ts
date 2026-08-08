@@ -1,11 +1,11 @@
-import type { CreateArtifactInput } from "@datafoundry/artifacts";
+import type { CreateArtifactInput } from "@diis/artifacts";
 import type {
   ArtifactSummary,
   ChartPreviewPoint,
   ChartPreviewSeries,
   ChartPreviewType,
   DataSourceSummary
-} from "@datafoundry/contracts";
+} from "@diis/contracts";
 
 export type DataSourceType =
   | "duckdb"

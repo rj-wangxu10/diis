@@ -11,15 +11,15 @@ import { Mastra } from "@mastra/core/mastra";
 import { WorkingMemory } from "@mastra/core/processors";
 import { createSkillTools, createWorkspaceTools } from "@mastra/core/workspace";
 import type { Message } from "@ag-ui/core";
-import type { ArtifactService, SessionOutputService } from "@datafoundry/artifacts";
-import type { DataGateway } from "@datafoundry/data-gateway";
-import { type FileAssetService, fileAssetRefDto, mimeTypeForFilename } from "@datafoundry/files";
-import type { KnowledgeService } from "@datafoundry/knowledge";
+import type { ArtifactService, SessionOutputService } from "@diis/artifacts";
+import type { DataGateway } from "@diis/data-gateway";
+import { type FileAssetService, fileAssetRefDto, mimeTypeForFilename } from "@diis/files";
+import type { KnowledgeService } from "@diis/knowledge";
 import {
   materializeSkillPackages,
   type SkillRecord,
   type SkillSelectionResult
-} from "@datafoundry/skills";
+} from "@diis/skills";
 import { copyFileSync, linkSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, join, resolve, sep } from "node:path";
 import {
@@ -27,7 +27,7 @@ import {
   createModelProviderFromConfig,
   type ChatProviderConfig,
   type ModelProvider
-} from "@datafoundry/providers";
+} from "@diis/providers";
 
 import { AGENT_MAX_STEPS, SQL_MAX_EXECUTION_COUNT } from "./runtime-limits.js";
 import { AGENT_RUNTIME_LIMITS } from "./config/agent-runtime-limits.js";

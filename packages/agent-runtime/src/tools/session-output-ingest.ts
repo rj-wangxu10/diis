@@ -1,4 +1,4 @@
-import type { SessionOutputService } from "@datafoundry/artifacts";
+import type { SessionOutputService } from "@diis/artifacts";
 import { resolve, sep } from "node:path";
 
 import { createArtifactEvent } from "../events.js";

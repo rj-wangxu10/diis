@@ -12,7 +12,7 @@
  */
 import neo4j, { type Driver, type Session } from "neo4j-driver";
 import type { DatabaseSync } from "node:sqlite";
-import type { LocalDataGateway, SchemaSummary } from "@datafoundry/data-gateway";
+import type { LocalDataGateway, SchemaSummary } from "@diis/data-gateway";
 
 // ---------------------------------------------------------------------------
 // Types

@@ -1,6 +1,6 @@
 import { Agent } from "@mastra/core/agent";
-import { createCustomEvent } from "@datafoundry/agent-runtime";
-import type { MetadataStore, SessionRecord } from "@datafoundry/metadata";
+import { createCustomEvent } from "@diis/agent-runtime";
+import type { MetadataStore, SessionRecord } from "@diis/metadata";
 import type { BaseEvent } from "@ag-ui/client";
 
 /** Reasoning models (e.g. deepseek-v4-pro) spend output budget on thinking first. */

@@ -1,16 +1,16 @@
 import { type BaseEvent, type RunAgentInput } from "@ag-ui/client";
-import type { EvidenceRef } from "@datafoundry/contracts";
+import type { EvidenceRef } from "@diis/contracts";
 import {
   createCustomEvent,
   createMastraConversationMemoryBridge,
   type AgentMemoryMode,
   type TaskStateRuntime
-} from "@datafoundry/agent-runtime";
+} from "@diis/agent-runtime";
 import {
   type ConversationMessageRecord,
   type LongTermMemoryRecord,
   type MetadataStore
-} from "@datafoundry/metadata";
+} from "@diis/metadata";
 
 import {
   ConversationMemoryService,

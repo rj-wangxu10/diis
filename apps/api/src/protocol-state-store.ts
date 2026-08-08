@@ -1,5 +1,5 @@
-import type { ProtocolEvent, ProtocolRunState, ProtocolStateStore } from "@datafoundry/agent-runtime";
-import type { MetadataStore, ProtocolStateSnapshotRecord } from "@datafoundry/metadata";
+import type { ProtocolEvent, ProtocolRunState, ProtocolStateStore } from "@diis/agent-runtime";
+import type { MetadataStore, ProtocolStateSnapshotRecord } from "@diis/metadata";
 
 /** Persist Protocol Runtime snapshots through the user-scoped metadata repository. */
 export class MetadataProtocolStateStore implements ProtocolStateStore {

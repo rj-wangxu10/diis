@@ -1,4 +1,4 @@
-import { createEnvConfig } from "@datafoundry/contracts";
+import { createEnvConfig } from "@diis/contracts";
 
 export type ApiConfig = {
   host: string;

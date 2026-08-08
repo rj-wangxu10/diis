@@ -1,5 +1,5 @@
 {
-  "name": "@datafoundry/tui",
+  "name": "@diis/tui",
   "version": "0.2.0",
   "description": "Terminal UI for DataFoundry - CopilotKit protocol client",
   "private": true,

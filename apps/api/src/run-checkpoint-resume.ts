@@ -1,6 +1,6 @@
 import type { RunAgentInput } from "@ag-ui/client";
-import type { ContextPackage } from "@datafoundry/agent-runtime";
-import type { CheckpointRecord, MetadataStore } from "@datafoundry/metadata";
+import type { ContextPackage } from "@diis/agent-runtime";
+import type { CheckpointRecord, MetadataStore } from "@diis/metadata";
 
 import { resolveSessionLineage } from "./session-branching.js";
 

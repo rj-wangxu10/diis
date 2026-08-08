@@ -1,4 +1,4 @@
-# Data Task UI (`@datafoundry/web`)
+# Data Task UI (`@diis/web`)
 
 Next.js data-task workspace in the datafoundry monorepo.
 

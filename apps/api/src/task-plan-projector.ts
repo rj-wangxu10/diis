@@ -1,5 +1,5 @@
 import { EventType, type BaseEvent } from "@ag-ui/core";
-import { createActivitySnapshot, type AgentRunContext } from "@datafoundry/agent-runtime";
+import { createActivitySnapshot, type AgentRunContext } from "@diis/agent-runtime";
 
 type MastraTask = {
   activeForm: string;

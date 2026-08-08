@@ -1,4 +1,4 @@
-import type { SchemaSummary, SqlExecutionResult } from "@datafoundry/data-gateway";
+import type { SchemaSummary, SqlExecutionResult } from "@diis/data-gateway";
 
 import { AGENT_RUNTIME_LIMITS } from "../../config/agent-runtime-limits.js";
 import type { ArtifactRef, AuditRef, ContextTruncation } from "../inventory/context-package.js";

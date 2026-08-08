@@ -1,7 +1,7 @@
 import type { RunAgentInput } from "@ag-ui/client";
-import type { EvidenceKind, EvidenceRef, EvidenceSelection } from "@datafoundry/contracts";
-import type { ConfigResourceKind, MetadataStore } from "@datafoundry/metadata";
-import type { SkillMode, SkillPolicyConfig } from "@datafoundry/skills";
+import type { EvidenceKind, EvidenceRef, EvidenceSelection } from "@diis/contracts";
+import type { ConfigResourceKind, MetadataStore } from "@diis/metadata";
+import type { SkillMode, SkillPolicyConfig } from "@diis/skills";
 
 import { preferConnectedResourceId } from "./model-profile-connection-status.js";
 

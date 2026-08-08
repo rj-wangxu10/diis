@@ -5,7 +5,7 @@ import {
   type AppErrorCode,
   type EvidenceKind,
   type EvidenceRef
-} from "@datafoundry/contracts";
+} from "@diis/contracts";
 import {
   createModelProviderFromEnv,
   createModelProviderFromProfile,
@@ -14,14 +14,14 @@ import {
   resolveSessionWorkspaceDir,
   resolveWorkspaceDir,
   STATIC_AGENT_TOOL_NAMES
-} from "@datafoundry/agent-runtime";
-import { fileAssetRefDto, type FileAssetService, mimeTypeForFilename, safeFilename } from "@datafoundry/files";
+} from "@diis/agent-runtime";
+import { fileAssetRefDto, type FileAssetService, mimeTypeForFilename, safeFilename } from "@diis/files";
 import {
   buildSkillResourcePayload,
   materializeSkillPackages,
   parseSkillPackage,
   selectSkillsForRun
-} from "@datafoundry/skills";
+} from "@diis/skills";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
@@ -47,7 +47,7 @@ import {
   type SessionBranchRecord,
   type SessionRecord,
   type UserRecord
-} from "@datafoundry/metadata";
+} from "@diis/metadata";
 import { randomUUID } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import type { IncomingMessage } from "node:http";

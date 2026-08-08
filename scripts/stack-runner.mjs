@@ -38,7 +38,7 @@ export async function runStack({ mode, args = [] }) {
   if (startApi) {
     const command =
       mode === "development"
-        ? ["--workspace", "@datafoundry/api", "run", "dev"]
+        ? ["--workspace", "@diis/api", "run", "dev"]
         : ["--prefix", "apps/api", "run", "start"];
     children.push(spawnProcess("DataFoundry API", "npm", command, { ...process.env, ...runtimeConfig }));
   }
@@ -46,7 +46,7 @@ export async function runStack({ mode, args = [] }) {
     const webScript = mode === "development" ? "dev" : "start";
     const command =
       mode === "development"
-        ? ["--workspace", "@datafoundry/web", "run", webScript]
+        ? ["--workspace", "@diis/web", "run", webScript]
         : ["--prefix", "apps/web", "run", webScript];
     const webEnv = {
       ...process.env,

@@ -7,7 +7,7 @@ import type {
   RunRecord,
   SessionBranchRecord,
   TraceSectionRecord
-} from "@datafoundry/metadata";
+} from "@diis/metadata";
 
 import {
   listVisibleConversationMessages,

@@ -1,6 +1,6 @@
 import { MastraAgent } from "@ag-ui/mastra";
 import type { RunAgentInput } from "@ag-ui/client";
-import type { ArtifactService, SessionOutputService } from "@datafoundry/artifacts";
+import type { ArtifactService, SessionOutputService } from "@diis/artifacts";
 import {
   createDataFoundry,
   createDataFoundryRunContext,
@@ -15,12 +15,12 @@ import {
   type ProtocolStateStore,
   type TaskStateRuntime,
   type WorkspaceAttachment
-} from "@datafoundry/agent-runtime";
-import type { DataGateway, LocalDataGateway } from "@datafoundry/data-gateway";
-import type { FileAssetService } from "@datafoundry/files";
-import type { KnowledgeService } from "@datafoundry/knowledge";
-import type { LongTermMemoryRecord, MetadataStore } from "@datafoundry/metadata";
-import type { SkillRecord, SkillSelectionResult } from "@datafoundry/skills";
+} from "@diis/agent-runtime";
+import type { DataGateway, LocalDataGateway } from "@diis/data-gateway";
+import type { FileAssetService } from "@diis/files";
+import type { KnowledgeService } from "@diis/knowledge";
+import type { LongTermMemoryRecord, MetadataStore } from "@diis/metadata";
+import type { SkillRecord, SkillSelectionResult } from "@diis/skills";
 
 import type { InteractionResume } from "./interaction-runtime-adapter.js";
 import { createPolicyMcpTools } from "./policy-mcp-tools.js";

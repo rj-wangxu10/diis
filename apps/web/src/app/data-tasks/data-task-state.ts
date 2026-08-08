@@ -4,7 +4,7 @@ import {
   LEFT_PANEL_DEFAULT_WIDTH,
   RIGHT_PANEL_DEFAULT_WIDTH,
 } from "./workspace-layout";
-import type { EvidenceRef } from "@datafoundry/contracts";
+import type { EvidenceRef } from "@diis/contracts";
 import type { TranslateFn } from "../../i18n/types";
 
 export type ArtifactKind = "chart" | "csv" | "memo" | "dashboard" | "file";
