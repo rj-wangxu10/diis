@@ -59,9 +59,11 @@ export function configApiIdentityHeaders(): Record<string, string> {
 
 export function getConfigApiBaseUrl(): string {
   const configured = process.env.NEXT_PUBLIC_CONFIG_API_URL;
-  if (configured !== undefined) {
+  if (configured) {
     return configured.replace(/\/$/u, "");
   }
+  // Production / formal deploy: same-origin BFF. Empty string keeps requests
+  // relative so session cookies and CSRF work through the Next.js proxy.
   return "";
 }
 

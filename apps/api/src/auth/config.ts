@@ -20,6 +20,7 @@ export type PasswordAuthConfig = {
 export function validateAuthPublicUrl(raw: string): {
   publicBaseUrl: string;
   loopback: boolean;
+  isPrivateHost: boolean;
   cookiePath: string;
   cookieSecure: boolean;
 } {
@@ -42,9 +43,19 @@ export function validateAuthPublicUrl(raw: string): {
 
   const host = url.hostname.toLowerCase().replace(/^\[(.*)\]$/, "$1");
   const loopback = host === "localhost" || host === "127.0.0.1" || host === "::1";
-  if (url.protocol === "http:" && !loopback) {
+  // Allow HTTP for loopback and private RFC 1918 / RFC 4193 addresses so that
+  // LAN deployments (e.g. 172.16.3.247:3000) work without TLS termination.
+  const isPrivateHost =
+    loopback ||
+    host.endsWith(".local") ||
+    /^10\./.test(host) ||
+    /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(host) ||
+    /^192\.168\./.test(host) ||
+    /^fc00:/i.test(host) ||
+    /^fd00:/i.test(host);
+  if (url.protocol === "http:" && !isPrivateHost) {
     throw new Error(
-      "AUTH_CONFIG_INVALID:AUTH_PUBLIC_BASE_URL HTTP is only allowed for loopback hosts (localhost, 127.0.0.1, ::1); use HTTPS for other hosts."
+      "AUTH_CONFIG_INVALID:AUTH_PUBLIC_BASE_URL HTTP is only allowed for loopback or private network hosts; use HTTPS for public hosts."
     );
   }
 
@@ -61,6 +72,7 @@ export function validateAuthPublicUrl(raw: string): {
   return {
     publicBaseUrl: normalized.origin + (normalized.pathname === "/" ? "" : normalized.pathname),
     loopback,
+    isPrivateHost,
     cookiePath,
     cookieSecure: url.protocol === "https:"
   };
@@ -133,9 +145,9 @@ function validatePasswordAuthConfig(config: PasswordAuthConfig): void {
   config.cookiePath = validated.cookiePath;
   config.cookieSecure = validated.cookieSecure;
 
-  if (config.emailDelivery === "test" && !validated.loopback) {
+  if (config.emailDelivery === "test" && !validated.loopback && !validated.isPrivateHost) {
     throw new Error(
-      "AUTH_CONFIG_INVALID:AUTH_EMAIL_DELIVERY=test is only allowed with a loopback AUTH_PUBLIC_BASE_URL."
+      "AUTH_CONFIG_INVALID:AUTH_EMAIL_DELIVERY=test is only allowed with a loopback or private network AUTH_PUBLIC_BASE_URL."
     );
   }
   if (config.emailDelivery === "smtp") {
