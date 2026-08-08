@@ -183,9 +183,23 @@ function isLoopbackHost(hostname) {
   return host === "localhost" || host === "127.0.0.1" || host === "::1";
 }
 
+function isPrivateHost(hostname) {
+  const host = String(hostname ?? "")
+    .toLowerCase()
+    .replace(/^\[(.*)\]$/u, "$1");
+  if (isLoopbackHost(host)) return true;
+  if (host.endsWith(".local")) return true;
+  if (/^10\./.test(host)) return true;
+  if (/^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(host)) return true;
+  if (/^192\.168\./.test(host)) return true;
+  if (/^fc00:/i.test(host)) return true;
+  if (/^fd00:/i.test(host)) return true;
+  return false;
+}
+
 /**
- * Native deploy allows HTTP only on loopback. Non-loopback hosts must use HTTPS
- * (or SSH port forwarding to a loopback listener).
+ * Native deploy allows HTTP for loopback and private RFC 1918 / RFC 4193 / .local
+ * hosts. Public hosts must use HTTPS (or SSH port forwarding to a loopback listener).
  */
 export function assertNativeAuthPublicBaseUrl(raw) {
   let url;
@@ -197,10 +211,10 @@ export function assertNativeAuthPublicBaseUrl(raw) {
   if (url.protocol !== "http:" && url.protocol !== "https:") {
     throw new Error("AUTH_PUBLIC_BASE_URL must use http or https");
   }
-  if (url.protocol === "http:" && !isLoopbackHost(url.hostname)) {
+  if (url.protocol === "http:" && !isPrivateHost(url.hostname)) {
     throw new Error(
-      "AUTH_PUBLIC_BASE_URL HTTP is only allowed for loopback hosts (127.0.0.1, localhost, ::1). " +
-        "For remote access use SSH port forwarding to the loopback listener, or configure HTTPS."
+      "AUTH_PUBLIC_BASE_URL HTTP is only allowed for loopback or private network hosts. " +
+        "For public internet access use SSH port forwarding or configure HTTPS."
     );
   }
   return url;

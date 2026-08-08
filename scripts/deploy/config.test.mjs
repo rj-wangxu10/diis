@@ -94,12 +94,14 @@ test("renders same-origin Web BFF configuration", () => {
   assert.doesNotMatch(text, /NEXT_PUBLIC_DATAFOUNDRY_AUTH_MODE/);
 });
 
-test("rejects non-loopback HTTP public URLs and wildcard bind hosts", () => {
+test("rejects public HTTP public URLs and wildcard bind hosts, allows private LAN HTTP", () => {
   assert.throws(
     () => assertNativeAuthPublicBaseUrl("http://example.com"),
-    /loopback|SSH|HTTPS/i
+    /loopback|private|SSH|HTTPS/i
   );
   assert.doesNotThrow(() => assertNativeAuthPublicBaseUrl("http://127.0.0.1:3100"));
+  assert.doesNotThrow(() => assertNativeAuthPublicBaseUrl("http://172.16.3.247:3000"));
+  assert.doesNotThrow(() => assertNativeAuthPublicBaseUrl("http://192.168.1.10"));
   assert.doesNotThrow(() => assertNativeAuthPublicBaseUrl("https://prod.example.com"));
   assert.throws(() => assertNativeBindHosts({ WEB_HOST: "0.0.0.0" }), /WEB_HOST/);
   assert.throws(() => assertNativeBindHosts({ API_HOST: "::" }), /API_HOST/);
